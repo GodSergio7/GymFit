@@ -1,0 +1,59 @@
+/* Footer (SPEC-01 §4.6, SPEC-02 §4.4 y §5.3)
+
+   Mobile-first. Una columna en móvil, dos zonas desde `--bp-md` (768 px) y tres
+   desde `--bp-lg` (1024 px). La banda alterna usa `--gf-bg-alt` para separarse
+   del contenido sin sombras ni degradados (SPEC-02 §4.4.3). */
+
+.gf-footer {
+  background-color: var(--gf-bg-alt);
+  color: var(--gf-text);
+  border-top: var(--gf-border-width) solid var(--gf-border);
+}
+
+.gf-footer__inner {
+  display: grid;
+  gap: var(--gf-space-lg);
+  padding-block: var(--gf-space-2xl);
+}
+
+.gf-footer__brand {
+  margin: 0;
+  font-family: var(--gf-font-heading);
+  font-size: var(--gf-text-xl);
+  font-weight: var(--gf-weight-black);
+  letter-spacing: var(--gf-tracking-tight);
+}
+
+.gf-footer__legal {
+  margin: 0;
+  color: var(--gf-text-muted);
+  font-size: var(--gf-text-sm);
+}
+
+@media (min-width: 768px) {
+  /* --bp-md */
+  .gf-footer__inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .gf-footer__legal {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* --bp-lg */
+  .gf-footer__inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .gf-footer__nav {
+    justify-self: center;
+  }
+
+  .gf-footer__legal {
+    grid-column: auto;
+    justify-self: end;
+  }
+}

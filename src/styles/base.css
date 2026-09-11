@@ -1,0 +1,164 @@
+/* ==========================================================================
+   base.css — CAPA 1: "Reset / base" (SPEC-02 §1.4 y §1.5)
+
+   Es CSS propio: reset + estilos de los elementos HTML desnudos +
+   comportamientos base. NO es un framework, NO incluye componentes y NO
+   importa nada de terceros (SPEC-02 §1.4).
+
+   Orden de carga: theme.css (tokens) → base.css → layout.css → componentes.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset / normalización (SPEC-02 §1.4)
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Estilos de elementos (SPEC-02 §1.4)
+   -------------------------------------------------------------------------- */
+body {
+  background-color: var(--gf-bg);
+  color: var(--gf-text);
+  font-family: var(--gf-font-body);
+  font-size: var(--gf-text-base);
+  font-weight: var(--gf-weight-regular);
+  line-height: var(--gf-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  /* Evita desbordamiento horizontal por palabras largas (SPEC-02 §7.2.1). */
+  overflow-wrap: break-word;
+}
+
+/* Titulares con la familia de headings (SPEC-02 §2.2.1) y los pesos aprobados
+   en SPEC-02 §2.2.5: 800 para display, 700 para h2, 600 para el resto. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--gf-font-heading);
+  line-height: var(--gf-leading-tight);
+  /* Comportamiento base: evita palabras huérfanas en los titulares. */
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--gf-text-display);
+  font-weight: var(--gf-weight-black);
+  letter-spacing: var(--gf-tracking-tight);
+}
+
+h2 {
+  font-size: var(--gf-text-3xl);
+  font-weight: var(--gf-weight-bold);
+  letter-spacing: var(--gf-tracking-tight);
+}
+
+h3 {
+  font-size: var(--gf-text-2xl);
+  font-weight: var(--gf-weight-semibold);
+  line-height: var(--gf-leading-snug);
+}
+
+h4 {
+  font-size: var(--gf-text-xl);
+  font-weight: var(--gf-weight-semibold);
+  line-height: var(--gf-leading-snug);
+}
+
+h5 {
+  font-size: var(--gf-text-lg);
+  font-weight: var(--gf-weight-semibold);
+  line-height: var(--gf-leading-snug);
+}
+
+h6 {
+  font-size: var(--gf-text-base);
+  font-weight: var(--gf-weight-semibold);
+  line-height: var(--gf-leading-snug);
+}
+
+p {
+  max-width: var(--gf-measure);
+}
+
+/* Listas semánticas legibles por defecto (SPEC-02 §9.5: listas reales). */
+ul,
+ol {
+  padding-inline-start: var(--gf-space-lg);
+}
+
+strong,
+b {
+  font-weight: var(--gf-weight-semibold);
+}
+
+/* Enlaces de cuerpo de texto: color + subrayado, de modo que se distingan sin
+   depender solo del color (SPEC-02 §6.5 y WCAG 1.4.1). */
+a {
+  color: var(--gf-link);
+  text-decoration: underline;
+  text-underline-offset: var(--gf-underline-offset);
+  transition: color var(--gf-duration-fast) var(--gf-ease-standard);
+}
+
+/* Imágenes y contenido incrustado (SPEC-02 §8.1). */
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Controles: heredan tipografía y color en lugar de los del navegador. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Comportamientos base (SPEC-02 §1.4)
+   -------------------------------------------------------------------------- */
+
+/* Foco accesible: anillo de 2 px con 2 px de separación (SPEC-02 §10.2).
+   El color sale del token, que cambia con la polaridad de la sección. */
+:focus-visible {
+  outline: var(--gf-focus-ring-width) solid var(--gf-focus-ring);
+  outline-offset: var(--gf-focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

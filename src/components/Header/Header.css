@@ -1,0 +1,117 @@
+/* Header (SPEC-01 §4.6 y §5.4; SPEC-02 §3.4 y §5)
+
+   Mobile-first. Cabecera ESTÁTICA: ⛔ sin `position: fixed` ni `sticky`
+   (SPEC-02 §15.1, decisión 5).
+
+   Móvil (<768px):
+     fila 1 — marca | CTA + botón de menú
+     fila 2 — panel vertical con la navegación (oculto hasta abrir)
+   Desde `--bp-md` (768px):
+     una sola fila — marca | navegación | CTA, sin botón de menú.
+
+   Sin degradados y sin sombra: la separación con el contenido es un borde
+   decorativo (SPEC-02 §2.5 y §9.4). */
+
+.gf-header {
+  background-color: var(--gf-bg);
+  color: var(--gf-text);
+  border-bottom: var(--gf-border-width) solid var(--gf-border);
+}
+
+.gf-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gf-space-xs) var(--gf-space-md);
+  padding-block: var(--gf-space-md);
+}
+
+.gf-header__brand {
+  /* Empuja la CTA y el botón de menú al lado derecho de la fila. */
+  margin-inline-end: auto;
+  color: var(--gf-text);
+  font-family: var(--gf-font-heading);
+  font-size: var(--gf-text-xl);
+  font-weight: var(--gf-weight-black);
+  letter-spacing: var(--gf-tracking-tight);
+  text-decoration: none;
+}
+
+.gf-header__actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Botón de menú: control solo-icono con nombre accesible (SPEC-02 §8.6.3).
+   Va SIN borde a propósito: lo que identifica el control es el icono, que usa
+   `--gf-text` (20,38:1 sobre el fondo). Un borde decorativo al 10 % no cumpliría
+   el 3:1 que SPEC-02 §6.3 exige a un borde funcional, así que no se añade. */
+.gf-header__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--gf-target-min);
+  min-height: var(--gf-target-min);
+  border: 0;
+  border-radius: var(--gf-radius-md);
+  background-color: transparent;
+  color: var(--gf-text);
+  transition: background-color var(--gf-duration-fast) var(--gf-ease-standard);
+}
+
+.gf-header__toggle:hover {
+  background-color: var(--gf-overlay-hover);
+}
+
+.gf-header__toggle:active {
+  background-color: var(--gf-overlay-active);
+}
+
+/* Panel de navegación. Cerrado por defecto (SPEC-02 §3.4.10): `display: none`
+   lo saca del orden de tabulación y del árbol de accesibilidad, así que no
+   depende de `hover` ni deja enlaces alcanzables cuando está cerrado. */
+.gf-header__panel {
+  display: none;
+  flex-basis: 100%;
+}
+
+.gf-header__panel[data-open='true'] {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  /* --bp-md */
+  .gf-header__inner {
+    flex-wrap: nowrap;
+    gap: var(--gf-space-lg);
+  }
+
+  .gf-header__brand {
+    margin-inline-end: 0;
+  }
+
+  /* Desde aquí el panel ES la navegación de la cabecera: siempre visible, sin
+     colapsar, y empuja la navegación y el CTA a la derecha. */
+  .gf-header__panel {
+    display: block;
+    flex-basis: auto;
+    order: 1;
+    margin-inline-start: auto;
+  }
+
+  .gf-header__actions {
+    order: 2;
+  }
+
+  /* El botón de menú solo existe en móvil (SPEC-02 §3.4). */
+  .gf-header__toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* --bp-lg */
+  .gf-header__inner {
+    gap: var(--gf-space-xl);
+  }
+}

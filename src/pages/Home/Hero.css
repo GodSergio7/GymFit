@@ -1,0 +1,30 @@
+/* Hero de Inicio (SPEC-01 §4.1; SPEC-02 §4.5 y §8.5)
+
+   Mobile-first. El fondo oscuro lo aporta `--gf-bg` desde `.gf-section`.
+   El ritmo vertical es el de sección (`--gf-section-padding-y`) porque todas las
+   secciones comparten el mismo ritmo (SPEC-02 §4.4.1).
+
+   Sin imagen y sin degradados: el Hero se sostiene con tipografía y CTA
+   (SPEC-02 §8.5). Cuando exista asset real, `grid-template-columns` pasará a dos
+   columnas desde `--bp-lg` y la media ocupará la segunda. */
+
+.gf-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: var(--gf-space-lg);
+}
+
+.gf-hero__lead {
+  font-size: var(--gf-text-lg);
+  line-height: var(--gf-leading-normal);
+  color: var(--gf-text-muted);
+}
+
+.gf-hero__actions {
+  margin-block-start: var(--gf-space-xs);
+}
+
+.gf-hero__note {
+  font-size: var(--gf-text-xs);
+}

@@ -1,0 +1,227 @@
+/* ==========================================================================
+   theme.css — Design tokens
+   SPEC-02 §2. Nomenclatura `--gf-` (SPEC-02 §1.6).
+
+   Arquitectura en dos capas (SPEC-02 §1.3):
+     Capa 1 — primitivos de marca: valores crudos. Cambiar la marca = editar aquí.
+     Capa 2 — tokens semánticos: describen la FUNCIÓN. Los componentes consumen
+              SOLO esta capa y nunca valores literales.
+
+   Reconciliación de C-02: este archivo sustituye los tokens de SPEC-00
+   (`--color-*`, `--radius-*` sin prefijo, `--radius-lg: 1rem`) por los tokens
+   aprobados en SPEC-02. No queda ningún sistema paralelo.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     CAPA 1 — Primitivos de marca (SPEC-02 §2.1.1)
+     ------------------------------------------------------------------------ */
+  --gf-color-black: #050505;
+  --gf-color-gray-dark: #111111;
+  --gf-color-gray: #a3a3a3;
+  --gf-color-gray-onlight: #525252;
+  --gf-color-yellow: #f5c400;
+  --gf-color-white: #ffffff;
+
+  /* Estados derivados del acento (SPEC-02 §2.1.2, aprobados).
+     Uso exclusivo como estados: nunca decorativos (SPEC-02 §11.1). */
+  --gf-color-yellow-hover: #ffd633;
+  --gf-color-yellow-active: #d8ac00;
+
+  /* ------------------------------------------------------------------------
+     Tipografía (SPEC-02 §2.2, aprobada: P-16 + P-13)
+     PENDIENTE P-13: los archivos WOFF2 autoalojados todavía no existen en el
+     proyecto, así que NO hay reglas @font-face (no se inventan archivos).
+     Mientras tanto el navegador usa las fuentes siguientes de la pila, que
+     son los fallbacks aprobados en SPEC-02 §2.2.1. Al incorporar los WOFF2
+     bastará con declarar @font-face con estos mismos nombres de familia.
+     ------------------------------------------------------------------------ */
+  --gf-font-heading: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --gf-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --gf-weight-regular: 400;
+  --gf-weight-medium: 500;
+  --gf-weight-semibold: 600;
+  --gf-weight-bold: 700;
+  --gf-weight-black: 800;
+
+  --gf-text-xs: 0.75rem;
+  --gf-text-sm: 0.875rem;
+  --gf-text-base: 1rem;
+  --gf-text-lg: 1.125rem;
+  --gf-text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --gf-text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --gf-text-3xl: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  --gf-text-display: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+
+  --gf-leading-tight: 1.1;
+  --gf-leading-snug: 1.25;
+  --gf-leading-normal: 1.6;
+
+  --gf-tracking-tight: -0.02em;
+  --gf-tracking-normal: 0;
+  --gf-tracking-wide: 0.08em;
+  --gf-tracking-wider: 0.16em;
+
+  --gf-measure: 68ch;
+
+  /* ------------------------------------------------------------------------
+     Espaciado (SPEC-02 §2.3) — múltiplos de 4 px, 9 tokens y ni uno más
+     ------------------------------------------------------------------------ */
+  --gf-space-2xs: 0.25rem;
+  --gf-space-xs: 0.5rem;
+  --gf-space-sm: 0.75rem;
+  --gf-space-md: 1rem;
+  --gf-space-lg: 1.5rem;
+  --gf-space-xl: 2rem;
+  --gf-space-2xl: 3rem;
+  --gf-space-3xl: 4rem;
+  --gf-space-4xl: 6rem;
+
+  /* ------------------------------------------------------------------------
+     Radios (SPEC-02 §2.4) — ninguno supera 12 px salvo la píldora
+     ------------------------------------------------------------------------ */
+  --gf-radius-sm: 0.25rem;
+  --gf-radius-md: 0.5rem;
+  --gf-radius-lg: 0.75rem;
+  --gf-radius-pill: 999px;
+
+  /* ------------------------------------------------------------------------
+     Sombras (SPEC-02 §2.5) — solo 2 niveles y solo para elementos flotantes
+     ------------------------------------------------------------------------ */
+  --gf-shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --gf-shadow-md: 0 12px 32px rgb(0 0 0 / 50%);
+
+  /* ------------------------------------------------------------------------
+     Transiciones (SPEC-02 §2.6) — ninguna supera 320 ms
+     ------------------------------------------------------------------------ */
+  --gf-duration-fast: 120ms;
+  --gf-duration-base: 200ms;
+  --gf-duration-slow: 320ms;
+  --gf-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --gf-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ------------------------------------------------------------------------
+     Constantes de implementación.
+     SPEC-02 no las enumera en sus tablas, pero el sistema las necesita y se
+     centralizan aquí para no repetir literales en los componentes
+     (SPEC-02 §1.3, regla 1). Ninguna introduce un color nuevo.
+     ------------------------------------------------------------------------ */
+  --gf-border-width: 1px;
+  --gf-focus-ring-width: 2px;
+  --gf-focus-ring-offset: 2px;
+  --gf-target-min: 44px; /* mínimo táctil: SPEC-01 §7.2 / SPEC-02 §10.4 */
+  --gf-control-height-lg: 52px; /* SPEC-02 §6.7 */
+  --gf-underline-offset: 0.2em;
+  --gf-layer-skip-link: 10;
+
+  /* ------------------------------------------------------------------------
+     Layout (SPEC-02 §4)
+     ------------------------------------------------------------------------ */
+  --gf-container-max: 75rem; /* 1200 px */
+  --gf-container-narrow: 45rem; /* 720 px */
+  --gf-container-padding: clamp(1rem, 4vw, 2.5rem);
+  --gf-section-padding-y: clamp(3rem, 7vw, 6rem);
+  --gf-grid-min-column: 16rem;
+
+  /* Breakpoints aprobados (SPEC-02 §3.1): 768 px y 1024 px.
+     ⚠️ Las variables CSS NO funcionan dentro de @media (SPEC-02 §3.2), así que
+     estos tokens son SOLO documentación de referencia: en las media queries los
+     valores se escriben literales con el comentario «--bp-md». */
+  --gf-bp-md: 768px;
+  --gf-bp-lg: 1024px;
+
+  /* Iconos (SPEC-02 §8.6) */
+  --gf-icon-sm: 1rem;
+  --gf-icon-md: 1.25rem;
+  --gf-icon-lg: 1.5rem;
+
+  /* ------------------------------------------------------------------------
+     CAPA 2 — Tokens semánticos. Polaridad OSCURA: la de por defecto
+     (SPEC-02 §2.1.3 regla 1 y §2.1.4).
+     ------------------------------------------------------------------------ */
+  --gf-bg: var(--gf-color-black);
+  --gf-bg-alt: var(--gf-color-gray-dark);
+  --gf-surface: var(--gf-color-gray-dark);
+  --gf-surface-hover: rgb(255 255 255 / 5%);
+
+  --gf-text: var(--gf-color-white);
+  --gf-text-muted: var(--gf-color-gray);
+  --gf-text-on-accent: var(--gf-color-black);
+
+  --gf-accent: var(--gf-color-yellow);
+  --gf-accent-hover: var(--gf-color-yellow-hover);
+  --gf-accent-active: var(--gf-color-yellow-active);
+
+  /* Token de enlace: es la forma de cumplir SPEC-02 §6.5 sin que el componente
+     tenga que conocer su polaridad. En oscuro el enlace es el acento; en claro
+     pasa a texto oscuro (el amarillo sobre blanco está prohibido, 1,64:1). */
+  --gf-link: var(--gf-accent);
+
+  --gf-border: rgb(255 255 255 / 10%);
+  --gf-border-strong: rgb(255 255 255 / 40%);
+  --gf-disabled-bg: rgb(255 255 255 / 8%);
+  --gf-disabled-text: rgb(255 255 255 / 45%);
+  --gf-overlay-hover: rgb(255 255 255 / 5%);
+  --gf-overlay-active: rgb(255 255 255 / 8%);
+
+  --gf-scrim: linear-gradient(
+    180deg,
+    rgb(5 5 5 / 20%),
+    rgb(5 5 5 / 85%)
+  );
+
+  --gf-focus-ring: var(--gf-color-yellow);
+  --gf-focus-ring-on-accent: var(--gf-color-white);
+
+  /* ------------------------------------------------------------------------
+     Tokens de la polaridad CLARA (SPEC-02 §2.1.5, aprobados con P-15).
+     No añaden ningún color nuevo: reutilizan #FFFFFF, #050505 y #525252.
+     ------------------------------------------------------------------------ */
+  --gf-bg-light: var(--gf-color-white);
+  --gf-surface-onlight: var(--gf-color-white);
+  --gf-surface-inverse: var(--gf-color-gray-dark);
+  --gf-text-onlight: var(--gf-color-black);
+  --gf-text-muted-onlight: var(--gf-color-gray-onlight);
+  --gf-border-onlight: rgb(5 5 5 / 12%);
+  --gf-border-strong-onlight: rgb(5 5 5 / 50%);
+  --gf-accent-hover-onlight: var(--gf-color-yellow-active);
+  --gf-focus-ring-onlight: var(--gf-color-black);
+  --gf-disabled-bg-onlight: rgb(5 5 5 / 8%);
+  --gf-disabled-text-onlight: rgb(5 5 5 / 45%);
+
+  /* Realce sobre fondos claros: mismo alfa que en oscuro, con el neutro oscuro.
+     SPEC-02 define los realces de la polaridad oscura (§2.1.4) pero no los de la
+     clara; se completan aquí con los mismos valores de alfa. */
+  --gf-surface-hover-onlight: rgb(5 5 5 / 5%);
+  --gf-overlay-hover-onlight: rgb(5 5 5 / 5%);
+  --gf-overlay-active-onlight: rgb(5 5 5 / 8%);
+}
+
+/* ==========================================================================
+   Polaridad clara (SPEC-02 §2.1.3).
+   Se aplica a la SECCIÓN, nunca a un componente suelto. Redefine los MISMOS
+   tokens semánticos, de modo que los componentes funcionan igual en ambas
+   polaridades sin saber en cuál están (SPEC-02 §2.1.3, regla 6 y §5.6.5).
+   ========================================================================== */
+.gf-section--light {
+  --gf-bg: var(--gf-bg-light);
+  --gf-bg-alt: var(--gf-bg-light);
+  --gf-surface: var(--gf-surface-onlight);
+  --gf-surface-hover: var(--gf-surface-hover-onlight);
+  --gf-text: var(--gf-text-onlight);
+  --gf-text-muted: var(--gf-text-muted-onlight);
+  --gf-link: var(--gf-text-onlight);
+  --gf-border: var(--gf-border-onlight);
+  --gf-border-strong: var(--gf-border-strong-onlight);
+  --gf-accent-hover: var(--gf-accent-hover-onlight);
+  --gf-focus-ring: var(--gf-focus-ring-onlight);
+  /* Sobre fondos claros el anillo negro sirve también en el botón amarillo
+     (12,40:1 contra el amarillo, 20,38:1 contra el blanco) — SPEC-02 §6.6. */
+  --gf-focus-ring-on-accent: var(--gf-focus-ring-onlight);
+  --gf-disabled-bg: var(--gf-disabled-bg-onlight);
+  --gf-disabled-text: var(--gf-disabled-text-onlight);
+  --gf-overlay-hover: var(--gf-overlay-hover-onlight);
+  --gf-overlay-active: var(--gf-overlay-active-onlight);
+}

@@ -1,0 +1,22 @@
+/* Icon (SPEC-02 §8.6)
+
+   El tamaño se controla con los tokens de icono, nunca con atributos rígidos.
+   `md` es el valor por defecto, así que no tiene modificador propio. */
+
+.gf-icon {
+  /* `flex: none` evita que el icono se comprima dentro de un contenedor flex
+     (botones, filas de contacto). */
+  flex: none;
+  width: var(--gf-icon-md);
+  height: var(--gf-icon-md);
+}
+
+.gf-icon--sm {
+  width: var(--gf-icon-sm);
+  height: var(--gf-icon-sm);
+}
+
+.gf-icon--lg {
+  width: var(--gf-icon-lg);
+  height: var(--gf-icon-lg);
+}

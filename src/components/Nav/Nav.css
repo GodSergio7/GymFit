@@ -1,0 +1,73 @@
+/* Nav (SPEC-01 §5, SPEC-02 §5.3 y §6.5)
+
+   Los enlaces usan el token `--gf-link`, que cambia con la polaridad de la
+   sección: amarillo sobre fondo oscuro y texto oscuro sobre fondo claro. Así el
+   componente no necesita saber dónde está (SPEC-02 §2.1.3 regla 6), y nunca se
+   pinta amarillo sobre blanco (prohibido, 1,64:1). */
+
+.gf-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gf-space-xs) var(--gf-space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gf-nav__link {
+  display: inline-flex;
+  align-items: center;
+  /* Área táctil mínima (SPEC-01 §7.2, SPEC-02 §10.4). */
+  min-height: var(--gf-target-min);
+  color: var(--gf-text);
+  font-family: var(--gf-font-body);
+  font-size: var(--gf-text-sm);
+  font-weight: var(--gf-weight-semibold);
+  text-decoration: none;
+  transition: color var(--gf-duration-fast) var(--gf-ease-standard);
+}
+
+/* El hover añade subrayado además del color: ningún estado se comunica solo
+   con color (SPEC-02 §10.3). */
+.gf-nav__link:hover {
+  color: var(--gf-link);
+  text-decoration: underline;
+  text-underline-offset: var(--gf-underline-offset);
+}
+
+/* Página actual (SPEC-01 §8.6.4). Preparado para cuando exista routing: hoy no
+   se aplica porque no se puede saber la página activa (P-01 pendiente). */
+.gf-nav__link[aria-current='page'] {
+  color: var(--gf-link);
+  text-decoration: underline;
+  text-underline-offset: var(--gf-underline-offset);
+}
+
+/* --------------------------------------------------------------------------
+   Variante apilada (SPEC-02 §3.4: el panel móvil muestra los elementos en
+   columna). En `--bp-md` vuelve a fila, porque ese mismo panel pasa a ser la
+   navegación horizontal de la cabecera.
+   -------------------------------------------------------------------------- */
+.gf-nav--stacked .gf-nav__list {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gf-space-2xs);
+}
+
+.gf-nav--stacked .gf-nav__link {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  /* --bp-md */
+  .gf-nav--stacked .gf-nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gf-space-xs) var(--gf-space-md);
+  }
+
+  .gf-nav--stacked .gf-nav__link {
+    width: auto;
+  }
+}

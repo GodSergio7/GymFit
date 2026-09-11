@@ -1,0 +1,113 @@
+/* Button (SPEC-02 §6)
+
+   Contrastes verificados (SPEC-02 §2.1):
+     - primario: texto negro sobre #F5C400 → 12,40:1 · hover 14,48:1 · active 9,53:1
+     - secundario: borde 3,71:1 sobre oscuro y 3,84:1 sobre claro
+     - foco: blanco sobre el botón amarillo en oscuro; negro en claro
+
+   Todos los valores salen de tokens: este archivo no contiene ningún literal
+   de color, tamaño ni espaciado (SPEC-02 §1.3 regla 1). */
+
+.gf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gf-space-xs);
+  /* Mínimo táctil: SPEC-01 §7.2 y SPEC-02 §10.4. */
+  min-height: var(--gf-target-min);
+  padding: var(--gf-space-sm) var(--gf-space-lg);
+  border: var(--gf-border-width) solid transparent;
+  border-radius: var(--gf-radius-md);
+  font-family: var(--gf-font-heading);
+  font-size: var(--gf-text-lg);
+  font-weight: var(--gf-weight-bold);
+  text-align: center;
+  /* El `<a>` hereda el subrayado de la capa base; un botón no va subrayado. */
+  text-decoration: none;
+  /* Solo se animan propiedades baratas (SPEC-02 §2.6 regla 1). */
+  transition:
+    background-color var(--gf-duration-fast) var(--gf-ease-standard),
+    border-color var(--gf-duration-fast) var(--gf-ease-standard),
+    color var(--gf-duration-fast) var(--gf-ease-standard);
+}
+
+/* --------------------------------------------------------------------------
+   Primario — acción de conversión. Uso preferente sobre fondos oscuros
+   (SPEC-02 §6.6): sobre fondo claro se evita y se usa el secundario.
+   -------------------------------------------------------------------------- */
+.gf-btn--primary {
+  background-color: var(--gf-accent);
+  color: var(--gf-text-on-accent);
+}
+
+.gf-btn--primary:hover {
+  background-color: var(--gf-accent-hover);
+}
+
+.gf-btn--primary:active {
+  background-color: var(--gf-accent-active);
+}
+
+/* Un anillo amarillo sobre un botón amarillo sería invisible (1:1), por eso el
+   foco del primario usa el anillo de contraste (SPEC-02 §6.2). */
+.gf-btn--primary:focus-visible {
+  outline-color: var(--gf-focus-ring-on-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Secundario — contorno. El borde es lo único que identifica el componente, así
+   que mantiene el mínimo de 3:1 (SPEC-02 §6.3): por eso no es "sutil".
+   -------------------------------------------------------------------------- */
+.gf-btn--secondary {
+  background-color: transparent;
+  border-color: var(--gf-border-strong);
+  color: var(--gf-text);
+}
+
+.gf-btn--secondary:hover {
+  background-color: var(--gf-overlay-hover);
+  border-color: var(--gf-text);
+}
+
+.gf-btn--secondary:active {
+  background-color: var(--gf-overlay-active);
+}
+
+/* --------------------------------------------------------------------------
+   Texto — acción de menor importancia. El subrayado permanece en hover: el
+   estado no puede depender solo del color (SPEC-02 §6.4).
+   -------------------------------------------------------------------------- */
+.gf-btn--text {
+  background-color: transparent;
+  color: var(--gf-text);
+  padding-inline: var(--gf-space-xs);
+  font-family: var(--gf-font-body);
+  font-weight: var(--gf-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: var(--gf-underline-offset);
+}
+
+.gf-btn--text:hover {
+  color: var(--gf-link);
+}
+
+/* --------------------------------------------------------------------------
+   Tamaños (SPEC-02 §6.7): máximo 2.
+   -------------------------------------------------------------------------- */
+.gf-btn--lg {
+  min-height: var(--gf-control-height-lg);
+  padding-inline: var(--gf-space-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Deshabilitado (SPEC-02 §6.2). WCAG exime el estado deshabilitado, pero el
+   texto se mantiene legible (4,52:1 en oscuro).
+   -------------------------------------------------------------------------- */
+.gf-btn:disabled,
+.gf-btn[aria-disabled='true'] {
+  background-color: var(--gf-disabled-bg);
+  border-color: transparent;
+  color: var(--gf-disabled-text);
+  cursor: not-allowed;
+  pointer-events: none;
+}

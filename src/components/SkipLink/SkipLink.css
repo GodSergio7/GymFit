@@ -1,0 +1,34 @@
+/* SkipLink (SPEC-01 §8.2.2, SPEC-02 §10.2)
+
+   Oculto visualmente con la técnica de recorte (no `display: none`, que lo
+   sacaría del orden de tabulación). Al recibir foco se muestra en pantalla. */
+
+.gf-skip-link {
+  position: absolute;
+  top: var(--gf-space-md);
+  left: var(--gf-space-md);
+  z-index: var(--gf-layer-skip-link);
+  padding: var(--gf-space-sm) var(--gf-space-md);
+  background-color: var(--gf-accent);
+  color: var(--gf-text-on-accent);
+  border-radius: var(--gf-radius-md);
+  font-family: var(--gf-font-heading);
+  font-size: var(--gf-text-lg);
+  font-weight: var(--gf-weight-bold);
+  text-decoration: none;
+
+  /* Oculto hasta recibir foco. */
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.gf-skip-link:focus {
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
