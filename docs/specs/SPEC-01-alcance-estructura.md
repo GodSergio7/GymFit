@@ -7,6 +7,7 @@
 | **Fecha**        | 2026-09-10                                                   |
 | **Estado**       | ✅ **Aprobada / DONE**                                        |
 | **Aprobada**     | 2026-09-10 por el responsable del proyecto                    |
+| **Última revisión** | 2026-09-10 — sincronización con SPEC-03 (**P-18**: URLs oficiales) y **cierre de R-06** |
 | **Depende de**   | SPEC-00 (base técnica, DONE ✅)                              |
 | **Produce**      | Documentación. **Ningún código, componente ni página.**       |
 | **Desbloquea**   | SPEC-02 y posteriores (diseño visual, routing, SEO, implementación) |
@@ -26,9 +27,10 @@
 
 **Estado de los identificadores:**
 
-- **Aprobados y cerrados** (sección 11.1): `R-01`, `R-02`, `R-08`, `P-02`, `P-03`.
-- **Abiertos** (secciones 11.2 a 11.4): `R-03` a `R-07`, `P-01`, `P-04` a `P-11`,
-  `S-01` a `S-04`.
+- **Aprobados y cerrados** (secciones 11.1 y 11.2): `R-01`, `R-02`, **`R-06`**
+  (cerrado por P-18), `R-08`, `P-02`, `P-03`, y la sugerencia `S-01`.
+- **Abiertos** (secciones 11.2 a 11.4): `R-03`, `R-04`, `R-05` (solo la parte de
+  anclas), `R-07`, `P-01`, `P-04` a `P-11` y `S-02` a `S-04`.
 
 ---
 
@@ -149,10 +151,10 @@ GymFit (web corporativa)
 │     ├── 7. Ubicación               (ancla: #ubicacion)
 │     └── 8. CTA final
 │
-├── Nosotros          →  /nosotros      🟡 propuesta de URL
-├── Servicios         →  /servicios     🟡 propuesta de URL
-├── Tarifas           →  /tarifas       🟡 propuesta de URL
-└── Contacto          →  /contacto      🟡 propuesta de URL
+├── Nosotros          →  /nosotros      ✅ URL ratificada (P-18)
+├── Servicios         →  /servicios     ✅ URL ratificada (P-18)
+├── Tarifas           →  /tarifas       ✅ URL ratificada (P-18)
+└── Contacto          →  /contacto      ✅ URL ratificada (P-18)
 ```
 
 **Elementos globales ✅ (aprobado R-01):** cabecera (marca, navegación a las 5
@@ -370,7 +372,9 @@ Requisitos del menú móvil (accesibilidad, obligatorios):
 
 - **¿Se instala React Router?** No se instala nada en esta SPEC. Es una decisión
   de la SPEC de routing. Ver **P-01**.
-- **URLs definitivas** de cada página. Ver P-01 y R-06.
+- **URLs de cada página**: ✅ **ratificadas** como URLs oficiales del proyecto
+  (**P-18**, §9.4). Ya **no son una decisión pendiente**; lo que sigue pendiente
+  es su **implementación**. Ver **P-01**.
 - **Página 404** (ruta no encontrada): no aprobada; ver **S-03**.
 - **Comportamiento al cambiar de página**: se propone subir al principio de la
   página en cada navegación. 🟡
@@ -680,23 +684,29 @@ su tema, y `<h2>` por sección.
 
 1. **En minúsculas, sin acentos ni "ñ"**, con guiones si hace falta y sin
    parámetros ni identificadores.
-2. Propuesta 🟡:
+2. ✅ **URLs oficiales y ratificadas** (**P-18**, ratificada el 2026-09-10 — ver
+   SPEC-03 §23.1):
 
-   | Página    | URL propuesta   |
-   | --------- | --------------- |
-   | Inicio    | `/`             |
-   | Nosotros  | `/nosotros`     |
-   | Servicios | `/servicios`    |
-   | Tarifas   | `/tarifas`      |
-   | Contacto  | `/contacto`     |
+   | Página    | URL oficial  |
+   | --------- | ------------ |
+   | Inicio    | `/`          |
+   | Nosotros  | `/nosotros`  |
+   | Servicios | `/servicios` |
+   | Tarifas   | `/tarifas`   |
+   | Contacto  | `/contacto`  |
 
-   > `/contacto` es el destino aprobado del CTA principal ✅ (P-02), por lo que
-   > esa URL ya no debería cambiar.
+   > **Estas cinco rutas forman parte de la arquitectura aprobada del proyecto**
+   > y **ya no son propuestas**: quedan **congeladas**. `/contacto` era además el
+   > destino aprobado del CTA principal ✅ (P-02).
 
 3. **Legibles y estables**: no deben contener cambios de campaña ni fechas.
-4. 🟡 **Decisión pendiente y con coste si se cambia después:** la estructura de
-   URLs debe **congelarse antes de implementar**, porque cambiarla más adelante
-   obliga a redirecciones. Ver R-06 y P-01.
+4. ✅ **Estructura congelada** (antes **R-06**, ya **cerrado**): al estar
+   ratificadas, no hay margen para cambiarlas sin coste. Cualquier cambio futuro
+   exigiría **redirecciones** y una **decisión explícita nueva**.
+5. ⚠️ **Ratificar las URLs NO implementa el routing**: **P-01 sigue pendiente**
+   (¿se instala React Router?), ⛔ **React Router no está instalado** y no existe
+   router propio ni simulación con `window.location`. Las URLs están ratificadas;
+   su **implementación** corresponde al bloque de routing.
 
 ### 9.5 Semántica HTML
 
@@ -995,16 +1005,21 @@ responsable ha aprobado el documento (2026-09-10).
   real; mejor especificarlo que improvisarlo.
 - **Impacto:** medio. Es requisito de entrada para la SPEC de routing.
 
-#### R-06 — La estructura de URLs debe congelarse antes de implementar
+#### R-06 — La estructura de URLs debe congelarse antes de implementar ✅ CERRADO
 
-- **Problema:** las URLs propuestas (`/nosotros`, `/servicios`, …) son fáciles
-  de cambiar ahora y caras de cambiar después (redirecciones, enlaces rotos,
-  posicionamiento perdido). `/contacto` ya está fijada por P-02.
-- **Propuesta:** aprobar el resto de la estructura de URLs (sección 9.4) **junto
-  con la decisión de routing**, antes de escribir código.
-- **Por qué:** es una decisión barata ahora e irreversible en la práctica
-  después.
-- **Impacto:** medio.
+- **Problema (histórico):** las URLs propuestas (`/nosotros`, `/servicios`, …)
+  eran fáciles de cambiar ahora y caras de cambiar después (redirecciones,
+  enlaces rotos, posicionamiento perdido). `/contacto` ya estaba fijada por P-02.
+- **Propuesta (histórica):** aprobar el resto de la estructura de URLs (§9.4)
+  antes de escribir código.
+- **✅ Cierre (2026-09-10):** **resuelto mediante P-18**. La estructura de URLs
+  queda **ratificada** (§9.4) como **URLs oficiales del proyecto**: `/`,
+  `/nosotros`, `/servicios`, `/tarifas` y `/contacto`. El riesgo de cambiarlas
+  después desaparece porque **ya están congeladas**.
+- **Nota importante:** el cierre de R-06 **no** cierra **P-01** (routing). Son
+  decisiones distintas: las URLs están ratificadas, pero **¿se instala React
+  Router?** sigue pendiente y ⛔ React Router **no está instalado**.
+- **Impacto:** **cerrado**, sin impacto pendiente.
 
 #### R-07 — Contenido variable incrustado en el marcado
 
@@ -1025,7 +1040,8 @@ responsable ha aprobado el documento (2026-09-10).
 #### P-01 — Routing y URLs
 
 - **Decisión necesaria:** ¿se instala React Router? ¿Las 5 páginas son rutas
-  reales? ¿URLs definitivas? ¿Hay página 404?
+  reales? ¿Hay página 404? — Las **URLs ya están ratificadas** (**P-18**, §9.4),
+  así que esta decisión es **exclusivamente de routing**.
 - **Opciones:** (a) sin router, navegación con anclas en una sola página;
   (b) router con 5 rutas reales; (c) router con carga diferida por ruta.
 - **Recomendación:** **(b) router con 5 rutas reales**, porque las 5 páginas
@@ -1156,7 +1172,7 @@ Dos detalles que P-02 deja sin resolver y que **no se resuelven por suposición*
 
 | Tipo | Abiertos | Aprobados y cerrados |
 | ---- | -------- | -------------------- |
-| Riesgos | R-03, R-04, R-05 (solo la parte de anclas), R-06, R-07 | R-01, R-02, R-08 |
+| Riesgos | R-03, R-04, R-05 (solo la parte de anclas), R-07 | R-01, R-02, **R-06 (cerrado por P-18)**, R-08 |
 | Pendientes | P-01, P-04, P-05, P-06, P-07, P-08, P-09, P-10, P-11 | P-02, P-03 |
 | Sugerencias | S-02, S-03, S-04 | S-01 |
 
@@ -1182,3 +1198,4 @@ de bundle que en SPEC-00) y el color `#525252` **no** se ha añadido todavía a
 | 2026-09-10 | Creación inicial de SPEC-01 a partir de las decisiones aprobadas. |
 | 2026-09-10 | Aprobadas R-01, R-02, R-08 (aplazada), P-02 y P-03. SPEC-01 pasa a **✅ Aprobada / DONE**. Registro de decisiones en 11.1; puntos abiertos reordenados en 11.2–11.5; nueva P-10 (renderizado/SEO) y nueva P-11 (detalles de CTAs). Criterios de aceptación verificados. |
 | 2026-09-10 | **Sincronización con el cierre del Bloque 1** (SPEC-02 revisión 2, §15). Aprobado el **patrón del menú móvil** (§5.4: panel vertical desplegable bajo la cabecera, con los requisitos de accesibilidad). Aprobada la **cabecera estática** (§11.2, R-05: cerrado en parte; el comportamiento de anclas sigue abierto). **S-01** pasa a aprobada e implementada (`SkipLink`). **No se modifica el alcance**: siguen las 5 páginas, las secciones, los CTAs y el stack. |
+| 2026-09-10 | **Sincronización con SPEC-03 (cierre de C-10).** **P-18 ratificada**: `/`, `/nosotros`, `/servicios`, `/tarifas` y `/contacto` son las **URLs oficiales del proyecto**; §9.4 deja de presentarlas como propuestas y el mapa del sitio (§3.1) y las decisiones de navegación (§5.5) se actualizan. **R-06 cerrado** por quedar resuelto con P-18 (§11.2 y §11.5). **P-01 continúa pendiente** y acotada al routing: ⛔ React Router no está instalado. No se modifica ninguna otra decisión. |

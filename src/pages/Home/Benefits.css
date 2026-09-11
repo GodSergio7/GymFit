@@ -1,0 +1,59 @@
+/* Beneficios / propuesta de valor — bloque 2 de Inicio (SPEC-03 §4)
+
+   Sección CLARA (`gf-section--light`): el cambio de polaridad respecto al Hero
+   oscuro ya es el separador, así que aquí no hay bordes, ni sombras, ni
+   degradados entre bandas (SPEC-02 §4.4.4). Los tokens semánticos
+   (`--gf-text`, `--gf-text-muted`, `--gf-border`) los redefine la propia sección
+   clara, de modo que este archivo no sabe en qué polaridad está
+   (SPEC-02 §2.1.3 regla 6 y §5.6.5).
+
+   Breakpoints: solo `--bp-md` (768 px) y `--bp-lg` (1024 px) (SPEC-02 §3.1).
+   Los valores van literales porque las variables CSS no funcionan en `@media`
+   (SPEC-02 §3.2). */
+
+.gf-benefits__inner {
+  display: grid;
+  gap: var(--gf-space-lg);
+}
+
+/* Cuatro columnas explícitas en vez de `auto-fit`: con 4 elementos, la rejilla
+   intrínseca reparte 3 + 1 en anchos intermedios (SPEC-03 §4), que es un reparto
+   desequilibrado. Móvil primero: una columna. */
+.gf-benefits__list {
+  grid-template-columns: 1fr;
+  /* La capa base deja a `ul` su sangría; aquí los elementos no llevan viñeta. */
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+/* Cada elemento es TEXTO, no una tarjeta (SPEC-03 H-06): sin superficie, sin
+   borde de contorno, sin sombra y sin interacción. La regla superior es
+   decorativa — no delimita un contenedor ni es un elemento interactivo. */
+.gf-benefits__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gf-space-sm);
+  padding-block-start: var(--gf-space-lg);
+  border-block-start: var(--gf-border-width) solid var(--gf-border);
+}
+
+/* Jerarquía por color, no por tamaño: el título usa `--gf-text` (negro sobre
+   blanco, 20,38:1) y la descripción `--gf-text-muted` (aquí #525252, 7,81:1 ✅).
+   ⛔ Nunca el acento amarillo como texto sobre claro (1,64:1) — SPEC-02 §6.5. */
+.gf-benefits__item-text {
+  color: var(--gf-text-muted);
+}
+
+@media (min-width: 768px) {
+  /* --bp-md */
+  .gf-benefits__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* --bp-lg */
+  .gf-benefits__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

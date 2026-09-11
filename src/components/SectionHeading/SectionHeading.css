@@ -1,0 +1,22 @@
+/* SectionHeading (SPEC-02 §5.3; SPEC-03 §14.2)
+
+   El `h2` NO se estiliza aquí: su tamaño, peso, familia y tracking son los
+   aprobados en la capa base (SPEC-02 §2.2.5-2.2.6, base.css). Volver a
+   declararlos sería duplicar la fundación y abrir la puerta a que diverjan.
+
+   Este archivo solo aporta lo que la fundación no puede saber: el ritmo entre el
+   título y su texto de apoyo, y el color del texto de apoyo (token semántico, así
+   que funciona igual en sección clara y oscura — SPEC-02 §2.1.3 regla 6).
+
+   Todos los valores salen de tokens: ni un literal (SPEC-02 §1.3 regla 1). */
+
+.gf-section-heading {
+  display: grid;
+  gap: var(--gf-space-md);
+}
+
+.gf-section-heading__text {
+  font-size: var(--gf-text-lg);
+  line-height: var(--gf-leading-normal);
+  color: var(--gf-text-muted);
+}

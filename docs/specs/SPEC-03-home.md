@@ -1150,10 +1150,7 @@ propio ni se simula navegación con `window.location`.
 implementará en su bloque.
 - **Efecto inmediato:** desbloquea los CTAs de sección de Servicios y Tarifas y
 elimina la incoherencia con el nav global (**C-06**, resuelta).
-- **Sincronización documental pendiente:** SPEC-01 §9.4 y §11.2 (**R-06**) siguen
-marcando estas URLs como *propuestas*. Requiere **una línea en SPEC-01**, que
-**no se ha modificado** en esta pasada por instrucción expresa del bloque
-(ver **C-10**).
+- **Sincronización documental:** ✅ **hecha** — SPEC-01 §9.4, §3.1, §5.5, §11.2 (**R-06**) y §11.5 se han actualizado para reflejar esta ratificación (**C-10 RESUELTA**). SPEC-01 mantiene **P-01** abierta y acotada al routing.
 
 
 
@@ -1312,23 +1309,28 @@ Footer como sección 9 (reclasificado como global por **R-01**).
 
 
 
-#### C-10 — SPEC-01 §9.4 y R-06 quedan desactualizados tras ratificar P-18 🟡 SIN RESOLVER
+#### C-10 — SPEC-01 §9.4 y R-06 quedaban desactualizados tras ratificar P-18 ✅ RESUELTA
 
-- **Dónde:** `docs/specs/SPEC-01-alcance-estructura.md` §9.4 marca las URLs como
-**🟡 propuestas** y §11.2 mantiene **R-06** ("la estructura de URLs debe
-congelarse antes de implementar") como riesgo **abierto**. Tras ratificar
-**P-18** (§23.1), ambas afirmaciones están desactualizadas.
-- **Conflicto:** SPEC-01 dice "propuesta" y SPEC-03 dice "ratificada" sobre las
-mismas rutas.
-- **Opción propuesta:** actualizar **una línea** en SPEC-01 §9.4 (de 🟡 a ✅) y
-cerrar **R-06** en §11.2/§11.5. Es un cambio de **estado documental**, no de
-decisión.
-- **Por qué no se ha hecho:** la instrucción de esta pasada limita las
-modificaciones a `SPEC-03-home.md`, `README.md` y, si faltaba, `SPEC-00`. Por
-eso **no se ha tocado SPEC-01** y se reporta aquí.
-- **Necesita aprobación:** sí, para autorizar esa línea en SPEC-01.
-- **Impacto:** **ninguno sobre la implementación.** Es una tarea de sincronización
-documental.
+- **Dónde estaba:** `docs/specs/SPEC-01-alcance-estructura.md` §9.4 marcaba las
+  URLs como **🟡 propuestas** y §11.2 mantenía **R-06** ("la estructura de URLs
+  debe congelarse antes de implementar") como riesgo **abierto**. Tras ratificar
+  **P-18** (§23.1), ambas afirmaciones quedaban desactualizadas.
+- **Conflicto:** SPEC-01 decía "propuesta" y SPEC-03 "ratificada" sobre las
+  mismas rutas.
+- **✅ Resolución (aplicada el 2026-09-10):** sincronización documental de
+  **SPEC-01**, **sin tocar ninguna otra decisión**:
+  1. **§9.4** — las cinco rutas pasan a ser **URLs oficiales y ratificadas** y se
+     declaran **congeladas**; se añade el punto explícito de que **ratificar las
+     URLs no implementa el routing**.
+  2. **§3.1** — el mapa del sitio deja de marcar cada URL como "🟡 propuesta".
+  3. **§5.5** — las decisiones de navegación reflejan que las URLs **ya no están
+     pendientes**; solo lo está su implementación.
+  4. **§11.2 — R-06 cerrado**: queda resuelto mediante P-18.
+  5. **§11.3 — P-01 acotada**: sigue **pendiente** y ya **solo** cubre el routing
+     (⛔ React Router sin instalar).
+  6. **§11.5** — R-06 se traslada a "aprobados y cerrados".
+- **Verificación:** no queda ninguna referencia a las URLs como propuestas en
+  SPEC-01 y **no hay ninguna contradicción nueva** relacionada con las URLs.
 
 
 
@@ -1337,9 +1339,9 @@ documental.
 
 | Estado                                             | Contradicciones                                               |
 | -------------------------------------------------- | ------------------------------------------------------------- |
-| **Resueltas**                                      | `C-04`, `C-06`, `C-07`, `C-08`, `C-09`                        |
+| **Resueltas**                                      | `C-04`, `C-06`, `C-07`, `C-08`, `C-09`, **`C-10`**            |
 | **Aclaradas** (no eran contradicciones de SPEC-03) | `C-05`                                                        |
-| **Nuevas**                                         | `C-10` (sincronización documental de SPEC-01; **no bloquea**) |
+| **Nuevas**                                         | Ninguna                                                       |
 | **Pendientes que bloqueen la implementación**      | **Ninguna**                                                   |
 
 
@@ -1358,8 +1360,8 @@ contra SPEC-00, SPEC-01, SPEC-02 y el código implementado en los Bloques 1 y 2.
 | **Estado**                              | 🟡 **CERRADA — esperando aprobación** (no autodeclarada aprobada)                                                                                                                   |
 | **Decisiones cerradas**                 | 19 (`H-01` … `H-19`) **+** `P-18` cerrada en esta pasada (§23.1)                                                                                                                    |
 | **Decisiones pendientes**               | 9 heredadas que afectan a la Home; **ninguna nueva** (§23.2)                                                                                                                        |
-| **Contradicciones**                     | 6 detectadas: **todas resueltas o aclaradas** (§24.1 y §24.2). **1 nueva de sincronización documental** (`C-10`), que **no bloquea**                                                |
-| **Sincronización documental pendiente** | `C-10`: SPEC-01 §9.4 y §11.2 (**R-06**) siguen marcando las URLs como propuestas; requiere **una línea en SPEC-01**, que **no se ha tocado** en esta pasada por instrucción expresa |
+| **Contradicciones**                     | 6 detectadas: **todas resueltas** (`C-10` incluida, §24.3) o **aclaradas** (`C-05`, §24.2). **Ninguna pendiente**                                                                   |
+| **Sincronización documental**           | ✅ **`C-10` resuelta**: SPEC-01 §9.4, §3.1, §5.5, §11.2 y §11.5 sincronizadas y **R-06 cerrado**. SPEC-01 mantiene **P-01** abierta (solo routing)                                  |
 | **Código afectado**                     | **Ninguno**: este documento no ha modificado `src/`, ni dependencias, ni assets                                                                                                     |
 | **Siguiente paso**                      | Aprobación de SPEC-03; después, Bloque 3 (Beneficios)                                                                                                                               |
 
@@ -1378,5 +1380,6 @@ contra SPEC-00, SPEC-01, SPEC-02 y el código implementado en los Bloques 1 y 2.
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 2026-09-10 | Creación inicial de SPEC-03 (página Inicio). Define objetivo, estructura de los 8 bloques, polaridad concreta de la Home, responsive, componentes, datos, accesibilidad, estados sin datos, CTAs, reparto en bloques y criterios de aceptación. Cierra 19 decisiones (`H-01`…`H-19`), abre **P-18** (ratificación de URLs) y detecta 6 contradicciones (`C-04`…`C-09`). Estado: 🟡 En revisión.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | 2026-09-10 | **Pasada de cierre documental.** Se **ratifica P-18**: `/`, `/nosotros`, `/servicios`, `/tarifas` y `/contacto` quedan como **URLs oficiales** (sin implementar routing: P-01 sigue abierta) y se actualizan todas sus referencias. Se crea `SPEC-00-base-tecnica.md` (reconstrucción documental) y se resuelve **C-04**. Se **aclara C-05** (`SectionHeading`/`Card`/`Badge`: aprobados, implementación pendiente, no es contradicción) y se cierran **C-06** (URLs), **C-07** (`Card --icon` no obliga a usar iconos), **C-08** (`GalleryItem` no obligatorio) y **C-09** (**1** `h1` **+ 7** `h2`, Footer global excluido). Se revisan `H-01`…`H-19` **sin cambios** y se abre **C-10** (sincronización documental de SPEC-01 §9.4 y R-06, que **no se modifica** en esta pasada). Estado: 🟡 **CERRADA — esperando aprobación**. |
+| 2026-09-10 | **Cierre de `C-10` (sincronización de SPEC-01).** Se actualiza **SPEC-01** para que las URLs dejen de aparecer como propuestas: **§9.4** (URLs **oficiales y ratificadas**, con el punto explícito de que ratificar no implementa el routing), **§3.1** (mapa del sitio), **§5.5** (navegación) y **§11.5** (resumen). **R-06 cerrado** por quedar resuelto con **P-18**. **P-01 sigue pendiente** y **acotada al routing** (§11.3); ⛔ React Router no está instalado. **No se cambia ninguna otra decisión.** `C-10` pasa a **✅ RESUELTA** (§24.3) y el documento queda **sin contradicciones pendientes**. Estado: 🟡 **CERRADA — esperando aprobación**. |
 
 

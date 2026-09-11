@@ -96,11 +96,11 @@ ruta; no se ha implementado navegación; no se ha instalado React Router; no se 
 añadido ninguna dependencia; `src/` permanece sin cambios respecto a SPEC-00.
 
 **Puntos que SPEC-01 deja abiertos** (no resueltos por suposición, para SPECs
-posteriores): R-03, R-04, R-06, R-07 y R-05 (solo su parte de anclas); P-01 y
-P-04 a P-11; y las sugerencias S-02, S-03 y S-04. **S-01 quedó aprobada e
-implementada** en el Bloque 1, y el **menú móvil** y la **cabecera estática**
-quedaron decididos en la revisión 2 de SPEC-02. El detalle está en la sección 11
-de la SPEC.
+posteriores): R-03, R-04, R-07 y R-05 (solo su parte de anclas); P-01 y P-04 a
+P-11; y las sugerencias S-02, S-03 y S-04. **S-01 quedó aprobada e implementada**
+en el Bloque 1; el **menú móvil** y la **cabecera estática** se decidieron en la
+revisión 2 de SPEC-02; y **R-06 quedó cerrado** al ratificarse **P-18** (URLs
+oficiales). El detalle está en la sección 11 de la SPEC.
 
 ---
 
@@ -293,7 +293,7 @@ Router sigue sin instalarse.
 | `C-07` `Card --icon` frente a no inventar iconos | ✅ **Cerrada**: `Card` puede usarse sin icono; ⛔ sin librería de iconos |
 | `C-08` `GalleryItem` presuponía un visor | ✅ **Cerrada**: no obligatorio; galería con `.gf-grid` + `figure` + `img` |
 | `C-09` recuento de "8 secciones `h2`" | ✅ **Cerrada**: **1 `h1` + 7 `h2`**; el Footer es global |
-| `C-10` SPEC-01 §9.4 y R-06 desactualizados | 🟡 **Nueva**, de **sincronización documental**: requiere una línea en SPEC-01, que **no se ha tocado**. **No bloquea** |
+| `C-10` SPEC-01 §9.4 y R-06 desactualizados | ✅ **Resuelta**: SPEC-01 §9.4/§3.1/§5.5/§11.2/§11.5 sincronizadas y **R-06 cerrado**; **P-01 sigue pendiente** (solo routing) |
 
 **Contradicciones que bloqueen la implementación: ninguna.**
 
